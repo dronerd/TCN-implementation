@@ -85,17 +85,13 @@ Two models are compared:
 
 Architecture:
 
-```text
 Sensor Data → TCN → Regression Layer → Joint Moment Prediction
-````
 
 ## Model B — TCN + Attention
 
 Architecture:
 
-```text
 Sensor Data → TCN → Attention Layer → Regression Layer → Joint Moment Prediction
-```
 
 Both models use:
 
@@ -112,10 +108,8 @@ The primary evaluation metric is validation loss (MSE).
 
 The hypothesis is that:
 
-```text
 TCN + Attention will achieve lower validation loss
 than TCN alone.
-```
 
 Possible reasons include:
 
