@@ -1,0 +1,310 @@
+yutokuroki@Yutos-MacBook-Air TCN implementation % source venv/bin/activate
+(venv) yutokuroki@Yutos-MacBook-Air TCN implementation % python real_gait_tcn/tcn_baseline.py \
+  --num-users 0 \
+  --splits 5 \
+  --epochs 5 \
+  --batch-size 32 \
+  --sequence-stride 100 \
+  --latency-batches 20 \
+  --latency-iterations 10 \
+  --plot-samples 500 \
+  --plot-width 24 \
+  --plot-height 4 \
+  --plot-dir results/tcn_baseline/plots/large_test \
+  --results-file results/tcn_baseline/json/tcn_large_test.json
+Testing with all 34 users
+
+======================================================================
+TCN-ONLY USER-STRATIFIED 5-FOLD VALIDATION
+======================================================================
+Data path: /Users/yutokuroki/Desktop/TCN implementation/data/doi_10_5061_dryad_8kprr4xsv__v20240321
+Total participants: 34
+Sequence length: 100
+Sequence stride: 100
+Input features: 14
+Target: hip_moment_l
+Device: mps
+Latency benchmark: enabled
+Prediction plots: enabled
+
+======================================================================
+FOLD 1/5
+======================================================================
+Training participants: 27 users
+Validation participants: 7 users
+
+  Loading train participants: ['AB01', 'AB02', 'AB03', 'AB04', 'AB05', 'AB06', 'AB07', 'AB08', 'AB10', 'AB11', 'AB12', 'AB13', 'AB14', 'AB15', 'AB17', 'AB18', 'AB19', 'AB21', 'AB23', 'AB24', 'AB26', 'AB29', 'AB30', 'AB31', 'AB32', 'AB33', 'AB34']
+    OK AB01: 703 samples
+    OK AB02: 660 samples
+    OK AB03: 668 samples
+    OK AB04: 646 samples
+    OK AB05: 434 samples
+    OK AB06: 692 samples
+    OK AB07: 672 samples
+    OK AB08: 689 samples
+    OK AB10: 829 samples
+    OK AB11: 753 samples
+    OK AB12: 704 samples
+    OK AB13: 748 samples
+    OK AB14: 684 samples
+    OK AB15: 1357 samples
+    OK AB17: 1381 samples
+    OK AB18: 1329 samples
+    OK AB19: 1457 samples
+    OK AB21: 1648 samples
+    OK AB23: 1643 samples
+    OK AB24: 1670 samples
+    OK AB26: 1650 samples
+    OK AB29: 1593 samples
+    OK AB30: 1982 samples
+    OK AB31: 1765 samples
+    OK AB32: 1853 samples
+    OK AB33: 1921 samples
+    OK AB34: 2120 samples
+  Loading val participants: ['AB09', 'AB16', 'AB20', 'AB22', 'AB25', 'AB27', 'AB28']
+    OK AB09: 741 samples
+    OK AB16: 1564 samples
+    OK AB20: 1652 samples
+    OK AB22: 1651 samples
+    OK AB25: 1551 samples
+    OK AB27: 1615 samples
+    OK AB28: 1459 samples
+
+Training samples: 32251, Val samples: 10233
+
+  Training TCN WITHOUT Attention...
+      [TCN] Epoch 01/5 | Train: 0.040836 | Val: 0.031915
+      [TCN] Epoch 02/5 | Train: 0.029450 | Val: 0.031009
+      [TCN] Epoch 03/5 | Train: 0.027040 | Val: 0.028527
+      [TCN] Epoch 04/5 | Train: 0.025697 | Val: 0.031833
+      [TCN] Epoch 05/5 | Train: 0.024542 | Val: 0.026407
+  Best Val Loss (TCN): 0.026407
+  Latency (TCN, mps): 0.018375 ms/sample, 54421.6 samples/sec
+  Prediction plot saved to: results/tcn_baseline/plots/large_test/fold_01_tcn_predictions.png
+======================================================================
+FOLD 2/5
+======================================================================
+Training participants: 27 users
+Validation participants: 7 users
+
+  Loading train participants: ['AB02', 'AB03', 'AB04', 'AB06', 'AB07', 'AB08', 'AB09', 'AB11', 'AB12', 'AB14', 'AB15', 'AB16', 'AB19', 'AB20', 'AB21', 'AB22', 'AB23', 'AB24', 'AB25', 'AB26', 'AB27', 'AB28', 'AB29', 'AB30', 'AB31', 'AB32', 'AB34']
+    OK AB02: 660 samples
+    OK AB03: 668 samples
+    OK AB04: 646 samples
+    OK AB06: 692 samples
+    OK AB07: 672 samples
+    OK AB08: 689 samples
+    OK AB09: 741 samples
+    OK AB11: 753 samples
+    OK AB12: 704 samples
+    OK AB14: 684 samples
+    OK AB15: 1357 samples
+    OK AB16: 1564 samples
+    OK AB19: 1457 samples
+    OK AB20: 1652 samples
+    OK AB21: 1648 samples
+    OK AB22: 1651 samples
+    OK AB23: 1643 samples
+    OK AB24: 1670 samples
+    OK AB25: 1551 samples
+    OK AB26: 1650 samples
+    OK AB27: 1615 samples
+    OK AB28: 1459 samples
+    OK AB29: 1593 samples
+    OK AB30: 1982 samples
+    OK AB31: 1765 samples
+    OK AB32: 1853 samples
+    OK AB34: 2120 samples
+  Loading val participants: ['AB01', 'AB05', 'AB10', 'AB13', 'AB17', 'AB18', 'AB33']
+    OK AB01: 703 samples
+    OK AB05: 434 samples
+    OK AB10: 829 samples
+    OK AB13: 748 samples
+    OK AB17: 1381 samples
+    OK AB18: 1329 samples
+    OK AB33: 1921 samples
+
+Training samples: 35139, Val samples: 7345
+
+  Training TCN WITHOUT Attention...
+      [TCN] Epoch 01/5 | Train: 0.038471 | Val: 0.031067
+      [TCN] Epoch 02/5 | Train: 0.028507 | Val: 0.029630
+      [TCN] Epoch 03/5 | Train: 0.026145 | Val: 0.029554
+      [TCN] Epoch 04/5 | Train: 0.025092 | Val: 0.028193
+      [TCN] Epoch 05/5 | Train: 0.023888 | Val: 0.027961
+  Best Val Loss (TCN): 0.027961
+  Latency (TCN, mps): 0.018120 ms/sample, 55188.1 samples/sec
+  Prediction plot saved to: results/tcn_baseline/plots/large_test/fold_02_tcn_predictions.png
+======================================================================
+FOLD 3/5
+======================================================================
+Training participants: 27 users
+Validation participants: 7 users
+
+  Loading train participants: ['AB01', 'AB05', 'AB07', 'AB08', 'AB09', 'AB10', 'AB11', 'AB13', 'AB15', 'AB16', 'AB17', 'AB18', 'AB19', 'AB20', 'AB21', 'AB22', 'AB23', 'AB24', 'AB25', 'AB26', 'AB27', 'AB28', 'AB29', 'AB30', 'AB32', 'AB33', 'AB34']
+    OK AB01: 703 samples
+    OK AB05: 434 samples
+    OK AB07: 672 samples
+    OK AB08: 689 samples
+    OK AB09: 741 samples
+    OK AB10: 829 samples
+    OK AB11: 753 samples
+    OK AB13: 748 samples
+    OK AB15: 1357 samples
+    OK AB16: 1564 samples
+    OK AB17: 1381 samples
+    OK AB18: 1329 samples
+    OK AB19: 1457 samples
+    OK AB20: 1652 samples
+    OK AB21: 1648 samples
+    OK AB22: 1651 samples
+    OK AB23: 1643 samples
+    OK AB24: 1670 samples
+    OK AB25: 1551 samples
+    OK AB26: 1650 samples
+    OK AB27: 1615 samples
+    OK AB28: 1459 samples
+    OK AB29: 1593 samples
+    OK AB30: 1982 samples
+    OK AB32: 1853 samples
+    OK AB33: 1921 samples
+    OK AB34: 2120 samples
+  Loading val participants: ['AB02', 'AB03', 'AB04', 'AB06', 'AB12', 'AB14', 'AB31']
+    OK AB02: 660 samples
+    OK AB03: 668 samples
+    OK AB04: 646 samples
+    OK AB06: 692 samples
+    OK AB12: 704 samples
+    OK AB14: 684 samples
+    OK AB31: 1765 samples
+
+Training samples: 36665, Val samples: 5819
+
+  Training TCN WITHOUT Attention...
+      [TCN] Epoch 01/5 | Train: 0.036384 | Val: 0.046739
+      [TCN] Epoch 02/5 | Train: 0.026497 | Val: 0.045555
+      [TCN] Epoch 03/5 | Train: 0.024067 | Val: 0.045808
+      [TCN] Epoch 04/5 | Train: 0.022613 | Val: 0.043775
+      [TCN] Epoch 05/5 | Train: 0.021619 | Val: 0.045613
+  Best Val Loss (TCN): 0.043775
+  Latency (TCN, mps): 0.018303 ms/sample, 54635.0 samples/sec
+  Prediction plot saved to: results/tcn_baseline/plots/large_test/fold_03_tcn_predictions.png
+======================================================================
+FOLD 4/5
+======================================================================
+Training participants: 27 users
+Validation participants: 7 users
+
+  Loading train participants: ['AB01', 'AB02', 'AB03', 'AB04', 'AB05', 'AB06', 'AB08', 'AB09', 'AB10', 'AB11', 'AB12', 'AB13', 'AB14', 'AB15', 'AB16', 'AB17', 'AB18', 'AB20', 'AB21', 'AB22', 'AB25', 'AB27', 'AB28', 'AB29', 'AB31', 'AB33', 'AB34']
+    OK AB01: 703 samples
+    OK AB02: 660 samples
+    OK AB03: 668 samples
+    OK AB04: 646 samples
+    OK AB05: 434 samples
+    OK AB06: 692 samples
+    OK AB08: 689 samples
+    OK AB09: 741 samples
+    OK AB10: 829 samples
+    OK AB11: 753 samples
+    OK AB12: 704 samples
+    OK AB13: 748 samples
+    OK AB14: 684 samples
+    OK AB15: 1357 samples
+    OK AB16: 1564 samples
+    OK AB17: 1381 samples
+    OK AB18: 1329 samples
+    OK AB20: 1652 samples
+    OK AB21: 1648 samples
+    OK AB22: 1651 samples
+    OK AB25: 1551 samples
+    OK AB27: 1615 samples
+    OK AB28: 1459 samples
+    OK AB29: 1593 samples
+    OK AB31: 1765 samples
+    OK AB33: 1921 samples
+    OK AB34: 2120 samples
+  Loading val participants: ['AB07', 'AB19', 'AB23', 'AB24', 'AB26', 'AB30', 'AB32']
+    OK AB07: 672 samples
+    OK AB19: 1457 samples
+    OK AB23: 1643 samples
+    OK AB24: 1670 samples
+    OK AB26: 1650 samples
+    OK AB30: 1982 samples
+    OK AB32: 1853 samples
+
+Training samples: 31557, Val samples: 10927
+
+  Training TCN WITHOUT Attention...
+      [TCN] Epoch 01/5 | Train: 0.041846 | Val: 0.023509
+      [TCN] Epoch 02/5 | Train: 0.030924 | Val: 0.023011
+      [TCN] Epoch 03/5 | Train: 0.028346 | Val: 0.023083
+      [TCN] Epoch 04/5 | Train: 0.026465 | Val: 0.021096
+      [TCN] Epoch 05/5 | Train: 0.025362 | Val: 0.021671
+  Best Val Loss (TCN): 0.021096
+  Latency (TCN, mps): 0.017889 ms/sample, 55900.6 samples/sec
+  Prediction plot saved to: results/tcn_baseline/plots/large_test/fold_04_tcn_predictions.png
+======================================================================
+FOLD 5/5
+======================================================================
+Training participants: 28 users
+Validation participants: 6 users
+
+  Loading train participants: ['AB01', 'AB02', 'AB03', 'AB04', 'AB05', 'AB06', 'AB07', 'AB09', 'AB10', 'AB12', 'AB13', 'AB14', 'AB16', 'AB17', 'AB18', 'AB19', 'AB20', 'AB22', 'AB23', 'AB24', 'AB25', 'AB26', 'AB27', 'AB28', 'AB30', 'AB31', 'AB32', 'AB33']
+    OK AB01: 703 samples
+    OK AB02: 660 samples
+    OK AB03: 668 samples
+    OK AB04: 646 samples
+    OK AB05: 434 samples
+    OK AB06: 692 samples
+    OK AB07: 672 samples
+    OK AB09: 741 samples
+    OK AB10: 829 samples
+    OK AB12: 704 samples
+    OK AB13: 748 samples
+    OK AB14: 684 samples
+    OK AB16: 1564 samples
+    OK AB17: 1381 samples
+    OK AB18: 1329 samples
+    OK AB19: 1457 samples
+    OK AB20: 1652 samples
+    OK AB22: 1651 samples
+    OK AB23: 1643 samples
+    OK AB24: 1670 samples
+    OK AB25: 1551 samples
+    OK AB26: 1650 samples
+    OK AB27: 1615 samples
+    OK AB28: 1459 samples
+    OK AB30: 1982 samples
+    OK AB31: 1765 samples
+    OK AB32: 1853 samples
+    OK AB33: 1921 samples
+  Loading val participants: ['AB08', 'AB11', 'AB15', 'AB21', 'AB29', 'AB34']
+    OK AB08: 689 samples
+    OK AB11: 753 samples
+    OK AB15: 1357 samples
+    OK AB21: 1648 samples
+    OK AB29: 1593 samples
+    OK AB34: 2120 samples
+
+Training samples: 34324, Val samples: 8160
+
+  Training TCN WITHOUT Attention...
+      [TCN] Epoch 01/5 | Train: 0.039183 | Val: 0.025237
+      [TCN] Epoch 02/5 | Train: 0.029358 | Val: 0.023929
+      [TCN] Epoch 03/5 | Train: 0.026923 | Val: 0.025559
+      [TCN] Epoch 04/5 | Train: 0.025347 | Val: 0.023190
+      [TCN] Epoch 05/5 | Train: 0.024438 | Val: 0.024184
+  Best Val Loss (TCN): 0.023190
+  Latency (TCN, mps): 0.017847 ms/sample, 56031.2 samples/sec
+  Prediction plot saved to: results/tcn_baseline/plots/large_test/fold_05_tcn_predictions.png
+
+======================================================================
+TCN-ONLY SUMMARY
+======================================================================
+Average validation loss: 0.028486 +/- 0.008012
+Average latency:         0.018107 ms/sample
+Average throughput:      55235.3 samples/sec
+Elapsed time:            3.94 minutes
+
+Results saved to: results/tcn_baseline/json/tcn_large_test.json
+(venv) yutokuroki@Yutos-MacBook-Air TCN implementation % 

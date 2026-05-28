@@ -1,0 +1,19 @@
+# Local dataset copy; cite/download from Dryad instead.
+data/
+
+# Local Python environment and caches.
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local plotting/font caches.
+.matplotlib_cache/
+
+# OS/editor files.
+.DS_Store
+*.swp
+*.swo
+
