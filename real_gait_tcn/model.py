@@ -1,5 +1,23 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
+
+
+class CausalConv1d(nn.Conv1d):
+    def __init__(self, in_channels, out_channels, kernel_size, dilation=1):
+        super().__init__(
+            in_channels,
+            out_channels,
+            kernel_size,
+            padding=0,
+            dilation=dilation
+        )
+        self.left_padding = dilation * (kernel_size - 1)
+
+    def forward(self, x):
+        if self.left_padding > 0:
+            x = F.pad(x, (self.left_padding, 0))
+        return super().forward(x)
 
 
 class TemporalBlock(nn.Module):
@@ -13,21 +31,19 @@ class TemporalBlock(nn.Module):
     ):
         super().__init__()
 
-        self.conv1 = nn.Conv1d(
+        self.conv1 = CausalConv1d(
             in_channels,
             out_channels,
             kernel_size,
-            padding=dilation * (kernel_size - 1) // 2,
             dilation=dilation
         )
         self.relu1 = nn.ReLU()
         self.dropout1 = nn.Dropout(dropout)
 
-        self.conv2 = nn.Conv1d(
+        self.conv2 = CausalConv1d(
             out_channels,
             out_channels,
             kernel_size,
-            padding=dilation * (kernel_size - 1) // 2,
             dilation=dilation
         )
         self.relu2 = nn.ReLU()
@@ -121,7 +137,7 @@ class MultiHeadAttention(nn.Module):
 
         self.fc_out = nn.Linear(d_model, d_model)
 
-    def forward(self, values, keys, queries):
+    def forward(self, values, keys, queries, mask=None):
         N = queries.shape[0]
 
         Q = self.query(queries)
@@ -133,6 +149,9 @@ class MultiHeadAttention(nn.Module):
         V = V.reshape(N, -1, self.num_heads, self.head_dim).transpose(1, 2)
 
         energy = torch.matmul(Q, K.transpose(-2, -1)) / (self.head_dim ** 0.5)
+        if mask is not None:
+            energy = energy.masked_fill(~mask, float("-inf"))
+
         attention = torch.softmax(energy, dim=-1)
 
         out = torch.matmul(attention, V)
@@ -188,7 +207,11 @@ class TCNWithAttention(nn.Module):
         tcn_out = tcn_out.transpose(1, 2)
 
         # Apply attention
-        attention_out = self.attention(tcn_out, tcn_out, tcn_out)
+        seq_len = tcn_out.size(1)
+        causal_mask = torch.tril(
+            torch.ones(seq_len, seq_len, device=tcn_out.device, dtype=torch.bool)
+        ).unsqueeze(0).unsqueeze(0)
+        attention_out = self.attention(tcn_out, tcn_out, tcn_out, causal_mask)
 
         final_output = attention_out[:, -1, :]
         prediction = self.regressor(final_output)
